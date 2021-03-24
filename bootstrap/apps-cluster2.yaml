@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps-cluster2
+  name: guestbook-cluster2
   namespace: tools
 spec:
   destination:
