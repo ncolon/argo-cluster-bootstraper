@@ -10,22 +10,31 @@ CLUSTER=""
 USERNAME=""
 PASSWORD=""
 ARGONAMESPACE=""
+APIPORT=""
 while getopts "c:u:p:n:" opt; do
   case ${opt} in
     c) CLUSTER=${OPTARG} ;;
     u) USERNAME=${OPTARG} ;;
     p) PASSWORD=${OPTARG} ;;
     n) ARGONAMESPACE=${OPTARG} ;;
+    a) APIPORT=${OPTARG}
   esac
 done
 
 ARGONAMESPACE=${ARGONAMESPACE:-tools}
 USERNAME=${USERNAME:-kubeadmin}
+APIPORT=${APIPORT:-6443}
+
+if [[ "${PASSWORD}" == "" ]]; then
+  echo -n "$USERNAME password:"
+  read -s PASSWORD
+  echo
+fi
 
 which oc > /dev/null || exit "install oc in your path"
 
 
-oc login ${CLUSTER}:6443 -u ${USERNAME} -p ${PASSWORD} || usage
+oc login ${CLUSTER}:${APIPORT} -u ${USERNAME} -p ${PASSWORD} || usage
 oc create sa argocd-manager -n kube-system
 
 cat << EOF | oc create -f -
