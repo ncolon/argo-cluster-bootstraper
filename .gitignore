@@ -1,4 +1,3 @@
 # ignore cluster yaml files
 # TODO: move to sealed secrets
 secret_*.yaml
-*.sh
