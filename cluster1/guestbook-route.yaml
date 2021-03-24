@@ -27,6 +27,9 @@ spec:
   host: guestbook-ui-default.apps.refarch.ncolon.xyz
   port:
     targetPort: 80
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
   to:
     kind: Service
     name: guestbook-ui
