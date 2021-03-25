@@ -17,9 +17,9 @@ while getopts "c:u:p:n:s:" opt; do
     c) CLUSTER=${OPTARG} ;;
     u) USERNAME=${OPTARG} ;;
     p) PASSWORD=${OPTARG} ;;
-    a) APIPORT=${OPTARG}
+    a) APIPORT=${OPTARG} ;;
     n) CONTROLLERNAMESPACE=${OPTARG} ;;
-    s) CONTROLLERNAME=${OPTARG}
+    s) CONTROLLERNAME=${OPTARG} ;;
   esac
 done
 
@@ -39,5 +39,6 @@ which kubeseal > /dev/null || exit "install kubeseal in your path"
 
 oc login ${CLUSTER}:${APIPORT} -u ${USERNAME} -p ${PASSWORD} || usage
 for file in secret_*.yaml;do
+  echo "cat $file | kubeseal --controller-namespace ${CONTROLLERNAMESPACE} --controller-name ${CONTROLLERNAME} --format yaml > bootstrap/sealed$file"
   cat $file | kubeseal --controller-namespace ${CONTROLLERNAMESPACE} --controller-name ${CONTROLLERNAME} --format yaml > bootstrap/sealed$file
 done
