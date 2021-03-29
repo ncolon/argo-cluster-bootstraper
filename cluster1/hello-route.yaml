@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: hello-kubernetes
+  name: hello-cluster
   namespace: default
 spec:
   host: hello.apps.cluster1.ncolon.xyz

@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: hello
+  name: hello-glb
 spec:
   host: hello.apps.refarch.ncolon.xyz
   port:
