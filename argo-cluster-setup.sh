@@ -84,6 +84,8 @@ metadata:
   namespace: ${ARGONAMESPACE}
   labels:
     argocd.argoproj.io/secret-type: cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 type: Opaque
 stringData:
   name: ${CLUSTER}

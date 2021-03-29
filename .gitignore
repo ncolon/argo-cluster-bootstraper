@@ -1,3 +1,4 @@
 # ignore cluster yaml files
 # TODO: move to sealed secrets
 secret_*.yaml
+argo-cluster-bootstrapper.yaml
