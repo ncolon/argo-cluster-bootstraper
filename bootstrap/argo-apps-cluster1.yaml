@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-cluster1
+  namespace: tools
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  destination:
+    namespace: default
+    server: "https://api.cluster1.ncolon.xyz:6443"
+  source:
+    path: cluster1
+    repoURL: "https://github.com/ncolon/argo-cluster-bootstraper"
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      automated:
+        prune: true
+        selfHeal: true
+      selfHeal: true
+      prune: true
