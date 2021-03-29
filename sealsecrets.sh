@@ -41,4 +41,5 @@ oc login ${CLUSTER}:${APIPORT} -u ${USERNAME} -p ${PASSWORD} || usage
 for file in secret_*.yaml;do
   echo "cat $file | kubeseal --controller-namespace ${CONTROLLERNAMESPACE} --controller-name ${CONTROLLERNAME} --format yaml > bootstrap/sealed$file"
   cat $file | kubeseal --controller-namespace ${CONTROLLERNAMESPACE} --controller-name ${CONTROLLERNAME} --format yaml > bootstrap/sealed$file
+  rm $file
 done
