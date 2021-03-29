@@ -20,3 +20,4 @@ spec:
         prune: false
         selfHeal: false
       selfHeal: true
+      prune: true
