@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: hello-cluster1
-  namespace: tools
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   finalizers:
